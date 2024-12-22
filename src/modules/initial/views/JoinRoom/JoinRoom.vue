@@ -1,11 +1,15 @@
 <template>
   <form id="box">
-    <RouterLink to="/join">Join an existent room</RouterLink>
+    <RouterLink to="/create">Create a new room</RouterLink>
+    <section class="input-section">
+      <label for="roomId" class="label">Room ID:</label>
+      <input type="text" name="roomId" id="roomId" class="input-text">
+    </section>
     <section class="input-section">
       <label for="username" class="label">Username:</label>
       <input type="text" name="username" id="username" class="input-text">
     </section>
-    <button type="submit" class="button btn-primary">Create</button>
+    <button type="submit" class="button btn-primary">Join</button>
   </form>
 </template>
 
