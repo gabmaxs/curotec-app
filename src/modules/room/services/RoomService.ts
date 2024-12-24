@@ -7,7 +7,7 @@ export interface IRoomService {
   create(params: CreateRoom): Promise<NewRoom>
 }
 
-class RoomService implements IRoomService {
+class Room implements IRoomService {
   private client;
   private resource;
 
@@ -28,6 +28,6 @@ class RoomService implements IRoomService {
   }
 }
 
-const roomService = new RoomService();
+const RoomService = new Room();
 
-export default roomService;
+export default RoomService;
