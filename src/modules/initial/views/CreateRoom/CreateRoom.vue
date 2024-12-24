@@ -15,8 +15,12 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import EnterNewRoomUseCase from '@/modules/room/useCases/EnterNewRoom';
+import { RoomRoutes } from '@/modules/room/router';
 import Box from '../../components/Box.vue';
 import Loading from '../../components/Loading.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const isLoading = ref<boolean>(false);
 const username = ref<string>("");
@@ -25,7 +29,8 @@ const handleCreateButtonClick = async () => {
   if (isLoading.value)  return;
   try {
     isLoading.value = true;
-    await EnterNewRoomUseCase.execute(username.value);
+    const room = await EnterNewRoomUseCase.execute(username.value);
+    router.push({ name: RoomRoutes.ROOM, params: { id: room.room.id } });
   } catch (error) {
     console.log(error);
   } finally {

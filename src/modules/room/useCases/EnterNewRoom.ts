@@ -22,12 +22,19 @@ class EnterNewRoom {
     console.error(`Error on EnterNewRoom useCase: ${message}`);
   }
 
-  async execute(username: string) {
+  async execute(username: string): Promise<NewRoom> {
     try {
       const newRoom: NewRoom = await this.roomService.create(this.roomMappers.toRequest({ username }));
       console.log(newRoom);
+      // validar dados
+      // chamar API
+      // pegar o id do room
+      // criar subscribe do websocket (talvez um outro useCase)
+      // navegar para a pagina
+      return newRoom;
     } catch (error: Error | any) {
       this.logError(error.message);
+      throw Error(error.message);
     }
   }
 }
