@@ -1,39 +1,70 @@
-# curotec-app
+## Project Description
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is the frontend part of a technical challenge proposed by **Curotec**. The goal of the challenge is to build a real-time collaborative application using **Laravel** and **Vue 3**. The application includes features such as:
 
-## Recommended IDE Setup
+- Data persistence.
+- WebSocket integration for real-time updates.
+- Code execution.
+- Video chat.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+The challenge emphasizes real-time updates, data processing, API design, user experience, and problem-solving skills.
 
-## Type Support for `.vue` Imports in TS
+## Project Dependencies
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- **Node.js** (version 22.9)
+- **Git**
 
-## Customize configuration
+## Steps to Run the Project
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### 1. Checkout the Projects
 
-## Project Setup
+Clone the frontend and backend repositories to your local machine:
 
-```sh
+```bash
+# Clone the frontend repository
+git clone https://github.com/gabmaxs/curotec-app
+
+# Clone the backend repository
+git clone https://github.com/gabmaxs/curotec-test
+```
+
+### 2. Install Dependencies
+
+Navigate to the frontend directory and install the project dependencies:
+
+```bash
+cd <frontend-directory>
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Ensure you also install the dependencies for the backend as specified in its repository.
 
-```sh
+### 3. Configure Environment Variables
+
+In the frontend project, configure the environment variables in the `.env` file. The required variables are:
+
+- **VITE_PUSHER_APP_KEY**: Pusher key.
+- **VITE_PUSHER_CLUSTER**: Pusher cluster.
+- **VITE_API_BASE_URL**: Backend API base URL.
+
+For more details on obtaining the Pusher configuration, refer to the [official documentation](https://pusher.com/docs).
+
+Example configuration in `.env`:
+
+```env
+VITE_PUSHER_APP_KEY=your_pusher_key
+VITE_PUSHER_CLUSTER=your_pusher_cluster
+VITE_API_BASE_URL=http://localhost:8000
+```
+
+### 4. Start the Local Server
+
+Start the local development server:
+
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+The frontend will be available at: `http://localhost:5173` (or another port specified in the terminal).
 
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
+Ensure the backend is running to enable communication between the application components.
