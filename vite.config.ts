@@ -15,4 +15,12 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server: {
+    proxy: {
+      '/broadcasting/auth': {
+        target: 'http://localhost:8000/broadcasting/auth',
+        changeOrigin: true,
+      },
+    }
+  }
 })
