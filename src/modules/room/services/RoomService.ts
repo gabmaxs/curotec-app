@@ -1,10 +1,11 @@
 import axios, { type AxiosResponse } from "axios";
 import type { CreateRoom } from "../types/CreateRoom";
 import RoomMappers from "../mappers";
-import type { NewRoom } from "../types/NewRoom";
+import type { IRoom } from "../types/Room";
 
 export interface IRoomService {
-  create(params: CreateRoom): Promise<NewRoom>
+  create(params: CreateRoom): Promise<IRoom>
+  joinRoom(idRoom: string, params: CreateRoom): Promise<unknown>
 }
 
 class Room implements IRoomService {
@@ -22,8 +23,13 @@ class Room implements IRoomService {
     });
   }
 
-  public async create(params: CreateRoom): Promise<NewRoom> {
+  public async create(params: CreateRoom): Promise<IRoom> {
     return this.client.post(this.resource, JSON.stringify(params))
+      .then((response: AxiosResponse) => RoomMappers.fromRequest(response.data));
+  }
+
+  public async joinRoom(idRoom: string, params: CreateRoom): Promise<IRoom> {
+    return this.client.post(`${this.resource}/${idRoom}/join`, JSON.stringify(params))
       .then((response: AxiosResponse) => RoomMappers.fromRequest(response.data));
   }
 }

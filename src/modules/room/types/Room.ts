@@ -1,4 +1,4 @@
-export interface NewRoom {
+export interface IRoom {
   room: any;
   participant: any;
 }

@@ -1,8 +1,9 @@
+import EchoInstance from "@/echo";
 import RoomMappers from "../mappers";
 import type { IRoomMappers } from "../mappers";
 import RoomService from "../services/RoomService";
 import type { IRoomService } from "../services/RoomService";
-import type { NewRoom } from "../types/NewRoom";
+import type { IRoom } from "../types/Room";
 
 interface EnterNewRoomDependencies {
   roomService: IRoomService;
@@ -22,15 +23,19 @@ class EnterNewRoom {
     console.error(`Error on EnterNewRoom useCase: ${message}`);
   }
 
-  async execute(username: string): Promise<NewRoom> {
+  async execute(username: string): Promise<IRoom> {
     try {
-      const newRoom: NewRoom = await this.roomService.create(this.roomMappers.toRequest({ username }));
+      const newRoom: IRoom = await this.roomService.create(this.roomMappers.toRequest({ username }));
       console.log(newRoom);
       // validar dados
       // chamar API
       // pegar o id do room
       // criar subscribe do websocket (talvez um outro useCase)
       // navegar para a pagina
+      EchoInstance.private(`room.${newRoom.room.id}`).listen('newMemberEnter', (data: unknown) => {
+        console.log('newMemberEnter');
+        console.log(data);
+      });
       return newRoom;
     } catch (error: Error | any) {
       this.logError(error.message);

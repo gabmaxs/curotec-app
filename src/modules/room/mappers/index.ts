@@ -1,12 +1,12 @@
 import type { CreateRoom } from "../types/CreateRoom";
-import type { NewRoom } from "../types/NewRoom";
+import type { IRoom } from "../types/Room";
 
 export interface IRoomMappers {
-  fromRequest(data: any): NewRoom;
+  fromRequest(data: any): IRoom;
   toRequest(data: any): CreateRoom;
 }
 class Room implements IRoomMappers{
-  fromRequest(data: any): NewRoom {
+  fromRequest(data: any): IRoom {
     return {
       participant: data.participant,
       room: data.room,
